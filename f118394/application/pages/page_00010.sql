@@ -1,0 +1,255 @@
+prompt --application/pages/page_00010
+begin
+--   Manifest
+--     PAGE: 00010
+--   Manifest End
+wwv_flow_api.component_begin (
+ p_version_yyyy_mm_dd=>'2021.10.15'
+,p_release=>'21.2.0'
+,p_default_workspace_id=>16769126531911660025
+,p_default_application_id=>118394
+,p_default_id_offset=>0
+,p_default_owner=>'WKSP_QUACKER'
+);
+wwv_flow_api.create_page(
+ p_id=>10
+,p_user_interface_id=>wwv_flow_api.id(17252290821906312400)
+,p_name=>'Dispensary Search'
+,p_alias=>'TEST-SEARCH'
+,p_step_title=>'Dispensary Search'
+,p_autocomplete_on_off=>'OFF'
+,p_step_template=>wwv_flow_api.id(17251964976443312321)
+,p_page_template_options=>'#DEFAULT#'
+,p_protection_level=>'C'
+,p_last_updated_by=>'SALTYQUACKER.GAMES@GMAIL.COM'
+,p_last_upd_yyyymmddhh24miss=>'20220103160333'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(17816311003053793935)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(17252163996755312362)
+,p_plug_display_sequence=>10
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(17251954519509312319)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(17252255443787312389)
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+);
+wwv_flow_api.create_report_region(
+ p_id=>wwv_flow_api.id(35114319483454067532)
+,p_name=>'Products'
+,p_template=>wwv_flow_api.id(17252132931765312355)
+,p_display_sequence=>30
+,p_region_template_options=>'#DEFAULT#'
+,p_component_template_options=>'#DEFAULT#:t-Report--altRowsDefault:t-Report--rowHighlight'
+,p_source_type=>'NATIVE_SQL_REPORT'
+,p_query_type=>'SQL'
+,p_source=>'SELECT DISTINCT ADDRESS,DISPENSARY,CITY,PROVINCE, DATE_ from JCPRODUCTS WHERE DATE_>=trunc(SYSDATE-7)'
+,p_ajax_enabled=>'Y'
+,p_lazy_loading=>false
+,p_query_row_template=>wwv_flow_api.id(17252208754552312373)
+,p_query_num_rows=>500
+,p_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_query_num_rows_type=>'NEXT_PREVIOUS_LINKS'
+,p_pagination_display_position=>'BOTTOM_RIGHT'
+,p_csv_output=>'Y'
+,p_csv_output_link_text=>'Download'
+,p_prn_output=>'N'
+,p_sort_null=>'L'
+,p_plug_query_strip_html=>'N'
+);
+wwv_flow_api.create_report_columns(
+ p_id=>wwv_flow_api.id(17862009006427755118)
+,p_query_column_id=>1
+,p_column_alias=>'ADDRESS'
+,p_column_display_sequence=>30
+,p_column_heading=>'Address'
+,p_use_as_row_header=>'N'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_api.create_report_columns(
+ p_id=>wwv_flow_api.id(17862008674507755118)
+,p_query_column_id=>2
+,p_column_alias=>'DISPENSARY'
+,p_column_display_sequence=>20
+,p_column_heading=>'Dispensary'
+,p_use_as_row_header=>'N'
+,p_default_sort_column_sequence=>2
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_api.create_report_columns(
+ p_id=>wwv_flow_api.id(17862009464779755119)
+,p_query_column_id=>3
+,p_column_alias=>'CITY'
+,p_column_display_sequence=>40
+,p_column_heading=>'City'
+,p_use_as_row_header=>'N'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_api.create_report_columns(
+ p_id=>wwv_flow_api.id(17862009890211755119)
+,p_query_column_id=>4
+,p_column_alias=>'PROVINCE'
+,p_column_display_sequence=>50
+,p_column_heading=>'Province'
+,p_use_as_row_header=>'N'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_api.create_report_columns(
+ p_id=>wwv_flow_api.id(17862014211327755122)
+,p_query_column_id=>5
+,p_column_alias=>'DATE_'
+,p_column_display_sequence=>160
+,p_column_heading=>'Date'
+,p_use_as_row_header=>'N'
+,p_column_format=>'DD-MON-YYYY'
+,p_default_sort_column_sequence=>1
+,p_default_sort_dir=>'desc'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(35114319601828067532)
+,p_plug_name=>'Search'
+,p_region_template_options=>'#DEFAULT#:t-Region--noPadding:t-Region--hideHeader:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(17252140355560312356)
+,p_plug_display_sequence=>10
+,p_plug_grid_column_span=>4
+,p_plug_display_point=>'REGION_POSITION_02'
+,p_plug_source_type=>'NATIVE_FACETED_SEARCH'
+,p_filtered_region_id=>wwv_flow_api.id(35114319483454067532)
+,p_attribute_01=>'N'
+,p_attribute_06=>'E'
+,p_attribute_08=>'#active_facets'
+,p_attribute_09=>'Y'
+,p_attribute_12=>'10000'
+,p_attribute_13=>'Y'
+,p_attribute_15=>'10'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(35114322323030067536)
+,p_plug_name=>'Button Bar'
+,p_region_template_options=>'#DEFAULT#:t-ButtonRegion--noPadding:t-ButtonRegion--noUI'
+,p_plug_template=>wwv_flow_api.id(17252042076172312337)
+,p_plug_display_sequence=>20
+,p_plug_source=>'<div id="active_facets"></div>'
+,p_plug_query_num_rows=>15
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_header=>'Showing Top 100 Entries'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(17862007530325755115)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(35114322323030067536)
+,p_button_name=>'RESET'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#:t-Button--noUI:t-Button--iconLeft'
+,p_button_template_id=>wwv_flow_api.id(17252253332936312389)
+,p_button_image_alt=>'Reset'
+,p_button_position=>'NEXT'
+,p_button_redirect_url=>'f?p=&APP_ID.:10:&SESSION.::&DEBUG.:RR,3::'
+,p_icon_css_classes=>'fa-undo'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(17862002411179755109)
+,p_name=>'P10_SEARCH'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(35114319601828067532)
+,p_prompt=>'Search'
+,p_source=>'DISPENSARY,ADDRESS,CITY,PROVINCE,BRAND,PRODUCT,TYPE,THCRANGE,WEIGHT'
+,p_source_type=>'FACET_COLUMN'
+,p_display_as=>'NATIVE_SEARCH'
+,p_attribute_01=>'ROW'
+,p_attribute_02=>'FACET'
+,p_attribute_04=>'N'
+,p_fc_collapsible=>true
+,p_fc_initial_collapsed=>false
+,p_fc_show_chart=>false
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(17862002876177755110)
+,p_name=>'P10_DATE'
+,p_source_data_type=>'VARCHAR2'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(35114319601828067532)
+,p_prompt=>'Date'
+,p_source=>'DATE_'
+,p_source_type=>'FACET_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_item_template_options=>'#DEFAULT#'
+,p_fc_show_label=>true
+,p_fc_collapsible=>true
+,p_fc_initial_collapsed=>false
+,p_fc_compute_counts=>true
+,p_fc_show_counts=>true
+,p_fc_zero_count_entries=>'H'
+,p_fc_show_chart=>true
+,p_fc_initial_chart=>false
+,p_fc_toggleable=>false
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(17862004838573755112)
+,p_name=>'P10_PROVINCE'
+,p_source_data_type=>'VARCHAR2'
+,p_item_sequence=>70
+,p_item_plug_id=>wwv_flow_api.id(35114319601828067532)
+,p_prompt=>'Province Location'
+,p_source=>'PROVINCE'
+,p_source_type=>'FACET_COLUMN'
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_fc_show_label=>true
+,p_fc_collapsible=>true
+,p_fc_initial_collapsed=>false
+,p_fc_compute_counts=>true
+,p_fc_show_counts=>true
+,p_fc_zero_count_entries=>'H'
+,p_fc_show_more_count=>5
+,p_fc_filter_values=>false
+,p_fc_sort_by_top_counts=>true
+,p_fc_show_selected_first=>false
+,p_fc_show_chart=>true
+,p_fc_initial_chart=>false
+,p_fc_toggleable=>false
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(17862005251651755112)
+,p_name=>'P10_CITY'
+,p_source_data_type=>'VARCHAR2'
+,p_item_sequence=>80
+,p_item_plug_id=>wwv_flow_api.id(35114319601828067532)
+,p_prompt=>'City'
+,p_source=>'CITY'
+,p_source_type=>'FACET_COLUMN'
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_item_template_options=>'#DEFAULT#'
+,p_fc_show_label=>true
+,p_fc_collapsible=>true
+,p_fc_initial_collapsed=>true
+,p_fc_compute_counts=>true
+,p_fc_show_counts=>true
+,p_fc_zero_count_entries=>'H'
+,p_fc_show_more_count=>5
+,p_fc_filter_values=>false
+,p_fc_sort_by_top_counts=>true
+,p_fc_show_selected_first=>false
+,p_fc_show_chart=>true
+,p_fc_initial_chart=>false
+,p_fc_toggleable=>false
+);
+wwv_flow_api.component_end;
+end;
+/
